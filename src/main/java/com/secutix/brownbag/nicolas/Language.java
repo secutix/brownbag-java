@@ -1,4 +1,4 @@
-package com.secutix;
+package com.secutix.brownbag.nicolas;
 
 public class Language {
 

@@ -1,10 +1,12 @@
-package com.secutix;
+package com.secutix.brownbag.nicolas;
 
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
+
+import com.secutix.brownbag.nicolas.ProgLang;
 
 public class ProgLangTest {
 

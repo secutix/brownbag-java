@@ -1,4 +1,4 @@
-package com.secutix;
+package com.secutix.brownbag.nicolas;
 
 import com.google.common.collect.ImmutableSet;
 

@@ -1,7 +1,7 @@
-package com.secutix;
+package com.secutix.brownbag.nicolas;
 
-import static com.secutix.Language.getLangCode;
-import static com.secutix.Language.getLangName;
+import static com.secutix.brownbag.nicolas.Language.getLangCode;
+import static com.secutix.brownbag.nicolas.Language.getLangName;
 import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Test;
