@@ -11,11 +11,11 @@ public class LanguageTest {
 	@Test
 	public void getLangCode_should_return_languages_code() {
 		final String en = getLangCode("English");
-		assertThat(en).equals("en");
+		assertThat(en).isEqualTo("en");
 		final String fr = getLangCode("French");
-		assertThat(fr).equals("fr");
+		assertThat(fr).isEqualTo("fr");
 		final String de = getLangCode("German");
-		assertThat(de).equals("de");
+		assertThat(de).isEqualTo("de");
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -26,10 +26,10 @@ public class LanguageTest {
 	@Test
 	public void getLangName_should_return_languages_name() {
 		final String en = getLangName("en");
-		assertThat(en).equals("English");
+		assertThat(en).isEqualTo("English");
 		final String fr = getLangName("fr");
-		assertThat(fr).equals("French");
+		assertThat(fr).isEqualTo("French");
 		final String de = getLangName("de");
-		assertThat(de).equals("German");
+		assertThat(de).isEqualTo("German");
 	}
 }
