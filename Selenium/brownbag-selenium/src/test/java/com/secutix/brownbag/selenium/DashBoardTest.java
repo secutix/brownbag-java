@@ -2,8 +2,11 @@ package com.secutix.brownbag.selenium;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.io.File;
+
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DashBoardTest {
@@ -32,10 +35,10 @@ public class DashBoardTest {
 
 	private WebDriver getDriver() {
 		// Use this if you have FF installed somewhere else than %PROGRAMFILES%\Mozilla Firefox\firefox.exe
-		// final FirefoxBinary binary =
-		// new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox ESR\\firefox.exe"));
-		// final WebDriver driver = new FirefoxDriver(binary, null);
-		final WebDriver driver = new FirefoxDriver();
+		 final FirefoxBinary binary =
+		 new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox ESR\\firefox.exe"));
+		 final WebDriver driver = new FirefoxDriver(binary, null);
+		//final WebDriver driver = new FirefoxDriver();
 
 		return driver;
 	}
