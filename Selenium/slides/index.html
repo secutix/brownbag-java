@@ -55,7 +55,7 @@
                         <ul>
                             <li class="fragment">Acts as a real end user</li>
                             <li class="fragment">Nice clean API</li>
-                            <li class="fragment">Java as language binding</li>
+                            <li class="fragment">Many language bindings</li>
                         </ul>
 					</section>
 					<section>
@@ -63,14 +63,17 @@
                         <ul>
                             <li class="fragment">Not reliable</li>
                             <li class="fragment">Slow</li>
-                            <li class="fragment">Sometimes very very slow</li>
+                            <li class="fragment">Very very slow</li>
                             <li class="fragment">Hard to debug</li>
                         </ul>
 					</section>
 					<section>
 						<h2>Think twice before using it</h2>
                         <p>
-                            Relevant if the page you are testing uses javascript and dynamic content. There are easier ways to test a backend service. Prefer fitness that is way faster, and easier to debug
+                            Relevant if the page you are testing uses javascript and dynamic content.
+                        </p>
+                        <p>
+                            There are more efficient ways to test a service or a process. Prefer fitness that is way faster, and easier to debug
                         </p>
 					</section>
 				</section>
@@ -79,7 +82,7 @@
                     <section>
                         <h2>Webdriver</h2>
                         <p>
-                            Both the code controlling the browser, and the interface binded to it
+                            Both the code controlling the browser, and the interface that binds to it
                         </p>
                     </section>
                     <section>
@@ -93,27 +96,27 @@ driver.get("http://www.google.com");
 // Find the text input element by its name
 WebElement input = driver.findElement(By.name("q"));
                         </code></pre>
-                        <p>
-                            Other locators : By.id, By.xpath, By.cssSelector, By.tagName
-                        </p>
+                        <small>
+                        By.id, By.xpath, By.cssSelector, By.tagName and some more
+                        </small>
                     </section>
                     <section>
-                        <h2>Interact with a webElement</h2>
+                        <h2>Interact with webElements</h2>
                         <pre><code data-trim contenteditable>
 // Enter something to search for
 input.sendKeys("cheese");
 
 // Now click the search button
-WebElement button = driver.findElement(By.name("q"));
-button.findElement(By.id("gbqfb")).click;
+WebElement button = driver.findElement(By.id("gbqfb"));
+button.click();
                         </code></pre>
-                        <p>
-                            Supports also : getText(), getAttribute(java.lang.String name), isDisplayed() and some more
-                        </p>
+                        <small>
+                            getText(), getAttribute(name), isDisplayed() and some more
+                        </small>
                     </section>
 
                     <section>
-                        <h2>Wait for something</h2>
+                        <h2>Wait until</h2>
                         <pre><code data-trim contenteditable>
 final FluentWait&lt;WebDriver&gt; wait = new FluentWait&lt;WebDriver&gt;(driver);
 
@@ -123,24 +126,56 @@ wait.until(new Predicate&lt;WebDriver&gt;() {
         return driver.getCurrentUrl().contains("cheese");
     }
 });
+
+//Now you can verify the result page
+assertThat(...)
                         </code></pre>
                     </section>
                 </section>
 
                 <section>
+                    <section>
                     <h2>Testing process @STX</h2>
                     <ul>
                         <li class="fragment">Application builds #n</li>
                         <li class="fragment">Env is updated and starts with some reference data</li>
                         <li class="fragment">Tests run</li>
+                        <li class="fragment">Analyze and fix</li>
                         <li class="fragment">Ouputs a quality measure of the build #n</li>
-                        <li class="fragment">Build #n may be pushed</li>
+                        <li class="fragment">Build #n may be pushed further in process</li>
                     </ul>
+                    </section>
+                    <section>
+                        <h2>Dashboard</h2>
+                        <img src="images/dashboard.png"/>
+                    </section>
+                    <section>
+                        <h2>Jenkins</h2>
+                        <img src="images/jenkins.png"/>
+                    </section>
+                    <section>
+                        <h2>You</h2>
+                        <ul>
+                            <li class="fragment">Great tool, use it</li>
+                            <li class="fragment">Get involved</li>
+                        </ul>
+                    </section>
                 </section>
-
 				<section>
-					<h1>THE END</h1>
+					<h2>Further reading</h2>
+                    <ul>
+                        <li>wiki http://wiki.elca.ch/twiki/secutix/bin/view/SecuTix2/SeleNium</li>
+                        <li>API https://code.google.com/p/selenium/</li>
+                        <li><img src="images/Selenium2TestingToolsBeginnersGuide.jpg"/> at disposal</li>
+                        <li>architecture http://www.aosabook.org/en/selenium.html</li>
+                    </ul>
 				</section>
+
+                <section>
+                    <h1>Next</h1>
+                    <p>Visit https://github.com/secutix</p>
+                    <p>Hands on in brownbag-java/Selenium/brownbag-selenium</p>
+                </section>
 
 			</div>
 
@@ -156,7 +191,7 @@ wait.until(new Predicate&lt;WebDriver&gt;() {
 				controls: true,
 				progress: true,
 				history: true,
-				center: false,
+				center: true,
 
 				theme: 'Serif',
 				transition: 'default',
