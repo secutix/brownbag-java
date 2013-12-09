@@ -17,6 +17,7 @@ import java.nio.file.WatchService;
 public class PathWatcherDemo {
 
     public static void main(final String[] args) throws IOException, InterruptedException {
+
         final Path path = Paths.get(System.getProperty("java.io.tmpdir"));
 
         System.out.println("Watching in " + path);

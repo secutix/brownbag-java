@@ -20,7 +20,10 @@ import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
 
 /**
- * Using Path, Paths and Files
+ * Exercising Path
+ * <p>
+ * The goal is fill the gaps by using the new Path class.
+ * <p>
  * 
  * @author Sebastien Caille (SCA)
  */

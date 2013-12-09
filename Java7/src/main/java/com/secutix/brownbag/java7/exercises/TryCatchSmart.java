@@ -6,8 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Use the try/catch smart feature.
+ * Exercising catches
  * <p>
+ * The goal is to refactor the method newInstance, so it uses the new "smarter"
+ * try/catch.
  * 
  * @author Sebastien Caille (SCA)
  */
