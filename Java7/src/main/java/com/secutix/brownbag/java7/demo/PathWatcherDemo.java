@@ -16,20 +16,23 @@ import java.nio.file.WatchService;
  */
 public class PathWatcherDemo {
 
-	public static void main(final String[] args) throws IOException, InterruptedException {
-		final Path path = Paths.get("C:\\windows\\temp");
-		final WatchService watchService = path.getFileSystem().newWatchService();
-		path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE);
+    public static void main(final String[] args) throws IOException, InterruptedException {
+        final Path path = Paths.get(System.getProperty("java.io.tmpdir"));
 
-		while (true) {
-			final WatchKey entry = watchService.take();
+        System.out.println("Watching in " + path);
 
-			System.out.println(entry.watchable().toString());
-			for (WatchEvent<?> event : entry.pollEvents()) {
-				System.out.println(event.kind().name() + ": " + event.context());
-			}
-			entry.reset();
-		}
-		// watchService.close();
-	}
+        final WatchService watchService = path.getFileSystem().newWatchService();
+        path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE);
+
+        while (true) {
+            final WatchKey entry = watchService.take();
+
+            System.out.println(entry.watchable().toString());
+            for (final WatchEvent<?> event : entry.pollEvents()) {
+                System.out.println(event.kind().name() + ": " + event.context());
+            }
+            entry.reset();
+        }
+        // watchService.close();
+    }
 }

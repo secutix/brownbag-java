@@ -26,9 +26,10 @@ import com.google.common.collect.ImmutableList;
  */
 public class PathTest {
 
-	@Test
+    @Test
 	public void testListFolders() throws IOException {
-		// Create a Path to c:\windows\temp using a factory method in Paths. 
+	    final String tempFolder = System.getProperty("java.io.tmpdir")
+		// Create a Path to tempFolder using a factory method in Paths. 
 		final Path path = Paths.;
 		System.out.println(path + ": depth = " + path.getNameCount());
 
@@ -40,7 +41,7 @@ public class PathTest {
 
 		try {
 			// create a file using a method of Files (do not use the one with the permissions)
-			Files. ;
+			final Files. ;
 			// Open a buffered writer using a method of Files. Use charset Charset.forName("ISO8859-1")
 			try (BufferedWriter out = Files.)) {
 				out.write("Hello world");
