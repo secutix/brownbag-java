@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Java8 : java reloaded</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/hash/deck.hash.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/swiss.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <h1>Java 8</h1>
+      <h4>GA in March 2014</h4>
+    </section>
+
+    <section class="slide">
+      <h2>Major changes</h2>
+      <ul>
+        <li><h3>Lambda (JSR 335)</h3></li>
+        <li><h3>Date &amp; Time API (JSR 310)</h3></li>
+        <li><h3>Annotation on Java types (JSR 308)</h3></li>
+        <li><h3>No more permgen space (JEP 122)</h3></li>
+        <li><h3>Nashorn, Javascript engine (JSR 292)</h3></li>
+      </ul>  
+    </section>
+
+    <section class="slide">
+      <h1>&lambda;</h1>
+    </section>
+
+
+    <section class="slide">
+      <h1> 
+        <pre><code>i -> i*2 </code></pre> 
+      </h1>
+    </section>
+
+    <section class="slide">
+      <h1> So what? </h1>
+    </section>
+
+    <section class="slide">
+      <h1> Functionnal programming </h1>
+    </section>
+
+    <section class="slide">
+      <h1>
+        <img src="/img/stats.gif" alt="exciting"></img>
+      </h1>
+    </section>
+
+
+    <section class="slide">
+      <h2>Java 7</h2>
+      <pre><code> 
+List&lt;Integer&gt; list = Arrays.asList(1, 2, 3);
+List&lt;String&gt; result = new ArrayList&lt;&gt;();
+
+for (Integer i : list) {
+  result.add(String.valueOf(i * 2));
+}
+
+System.out.println(result);
+      </code></pre> 
+    </section>
+
+    <section class="slide">
+      <h2>Java with Guava</h2>
+      <pre><code> 
+List&lt;Integer&gt; list = Arrays.asList(1, 2, 3);
+
+List&lt;String&gt; result =
+    FluentIterable.from(list)
+        .transform(new Function&lt;Integer, String&gt;() {
+            @Override
+            public String apply(Integer input) {
+                return String.valueOf(input * 2);
+            }
+        }).toList();
+
+System.out.println(result);
+      </code></pre> 
+    </section>
+
+
+    <section class="slide">
+      <h2>Java 8</h2>
+      <pre><code> 
+List&lt;Integer&gt; list = Arrays.asList(1, 2, 3);
+
+List&lt;String&gt; result =
+    list.stream()
+        .map(input -> String.valueOf(input * 2))
+        .collect(Collectors.toList());
+
+System.out.println(result);
+      </code></pre> 
+    </section>
+
+   
+    <section class="slide">
+      <h2>A more complex example</h2>
+      <pre><code> 
+List&lt;String&gt; result =
+    dudes
+      .stream()
+      .filter(p -> p.getAge() >= 18)
+      .sorted(Comparators
+          .comparing(Person::getLastName)
+          .thenComparing(Person::getFirstName))
+      .map(p -> String.format("M. %s %s",
+          p.getFirstName, p.getLastName))
+      .collect(Collectors.toList)
+
+System.out.println("result = " + result);
+      </code></pre> 
+    </section>
+
+    <section class="slide">
+      <h2>Yes, interfaces can now have</h2>
+      <ul>
+        <li class="slide">
+          <h3>methods with an implementation</h3>
+          <pre><code>
+public interface A {
+    default void foo(){
+       System.out.println("Calling A.foo()");
+    }
+}
+public class B implements A { }
+          </code></pre>
+          <h3 class="slide"> Be carefull with the diamond problem of multiple inheritance.</h3>
+        </li>
+        <li class="slide"><h3>static methods</h3></li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <pre><code>
+int cumulatedSeats = 0;
+cars.forEach(p ->
+    cumulatedSeats += p.getNumberOfSeats()
+);
+      </code></pre>
+      <img src="/img/bruce.gif" alt="nein" class="slide"> </img>
+    </section>
+
+    <section class="slide">
+      <h2>Use streams and avoid side effects</h2>
+      <pre><code>
+int cumulatedSeats = cars
+      .stream()
+      .mapToInt(Car::getNumberOfSeats())
+      .sum();
+      </code></pre> 
+    </section>
+
+    <section class="slide">    
+      <ul>
+        <li><h3>Stream</h3></li>
+        <li class="slide"><h3>IntStream</h3></li>
+        <li class="slide"><h3>LongStream</h3></li>
+        <li class="slide"><h3>DoubleStream</h3></li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Ever heard of SAM?</h2>
+      <h3 class="slide">Single Abstract Method</h3>
+      <pre class="slide"><code>
+@FunctionalInterface
+public interface DoIt<T, R> {
+  R apply(T input);
+}
+      </code></pre> 
+    </section>
+
+
+    <section class="slide">
+      <h3><pre><code>
+FileFilter filterJavaFiles = 
+    (File f) -> f.getName().endsWith(".java");
+      </code></pre></h3>
+    </section>
+
+    <section class="slide">
+      <h2> Let's code. </h2>
+      <img src="/img/cinemagraph_screen_reflect_glasses.gif" />
+    </section>
+    <!-- End slides. -->
+
+  <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+    <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+</body>
+</html>
